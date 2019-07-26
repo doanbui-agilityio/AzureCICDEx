@@ -24,9 +24,14 @@ steps:
     workingDir: SignalRWebPack/SignalRWebPack
   displayName: 'npm install'
 
+- task: CopyFiles@2
+  inputs:
+    Contents: '_buildOutput/**'
+    TargetFolder: $(Build.ArtifactStagingDirectory)
+
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: $(Build.ArtifactStagingDirectory)/SignalRWebPack
+    PathtoPublish: $(Build.ArtifactStagingDirectory)
     ArtifactName: MyBuildOutputs
 
 - script: dotnet build SignalRWebPack/SignalRWebPack/SignalRWebPack.csproj --configuration $(buildConfiguration)
