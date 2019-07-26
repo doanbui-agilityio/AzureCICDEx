@@ -26,9 +26,8 @@ steps:
 
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: $(Build.ArtifactStagingDirectory)
+    PathtoPublish: $(Build.ArtifactStagingDirectory)/AzureCICDEx/SignalRWebPack
     ArtifactName: MyBuildOutputs
-    targetPath: SignalRWebPack
 
 - script: dotnet build SignalRWebPack/SignalRWebPack/SignalRWebPack.csproj --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
