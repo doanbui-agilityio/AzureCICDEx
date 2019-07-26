@@ -26,10 +26,3 @@ steps:
 
 - script: dotnet build SignalRWebPack/SignalRWebPack/SignalRWebPack.csproj --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
-
-- task: PublishCodeCoverageResults@1
-  inputs:
-    codeCoverageTool: "JaCoCo"
-    summaryFileLocation: "$(System.DefaultWorkingDirectory)/SignalRWebPack/**/site/jacoco/jacoco.xml"
-    reportDirectory: "$(System.DefaultWorkingDirectory)/SignalRWebPack/**/site/jacoco"
-    failIfCoverageEmpty: true
