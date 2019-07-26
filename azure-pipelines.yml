@@ -28,6 +28,7 @@ steps:
   inputs:
     PathtoPublish: $(Build.ArtifactStagingDirectory)
     ArtifactName: MyBuildOutputs
+    targetPath: SignalRWebPack
 
 - script: dotnet build SignalRWebPack/SignalRWebPack/SignalRWebPack.csproj --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
