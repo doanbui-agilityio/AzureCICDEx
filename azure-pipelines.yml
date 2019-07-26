@@ -13,5 +13,17 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- script: dotnet build --configuration $(buildConfiguration)
+- task: NodeTool@0
+  inputs:
+    versionSpec: '10.x'
+  displayName: 'Install Node.js'
+
+- task: Npm@1
+  inputs:
+    command: install
+    workingDir: SignalRWebPack/SignalRWebPack
+  displayName: 'npm install'
+
+- script: dotnet build SignalRWebPack/SignalRWebPack/SignalRWebPack.csproj --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
+
