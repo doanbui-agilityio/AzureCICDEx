@@ -7,7 +7,7 @@ trigger:
 - master
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'vs2017-win2016'
 
 variables:
   buildConfiguration: 'Release'
@@ -27,3 +27,12 @@ steps:
 - script: dotnet build SignalRWebPack/SignalRWebPack/SignalRWebPack.csproj --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
 
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: SignalRWebPack
+    TargetFolder: $(Build.ArtifactStagingDirectory)
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: $(Build.ArtifactStagingDirectory)
+    ArtifactName: MyBuildOutputs
