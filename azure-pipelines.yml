@@ -27,12 +27,21 @@ steps:
 - script: dotnet build SignalRWebPack/SignalRWebPack/SignalRWebPack.csproj --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
 
-- task: CopyFiles@2
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet publish'
   inputs:
-    SourceFolder: SignalRWebPack
-    TargetFolder: $(Build.ArtifactStagingDirectory)
+    command: publish
+    publishWebProjects: false
+    projects: 'SignalRWebPack/SignalRWebPack/SignalRWebPack.csproj'
+    arguments: -o $(build.ArtifactStagingDirectory)
+    zipAfterPublish: true
 
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: $(Build.ArtifactStagingDirectory)
-    ArtifactName: MyBuildOutputs
+# - task: CopyFiles@2
+#   inputs:
+#     SourceFolder: SignalRWebPack
+#     TargetFolder: $(Build.ArtifactStagingDirectory)
+
+# - task: PublishBuildArtifacts@1
+#   inputs:
+#     PathtoPublish: $(Build.ArtifactStagingDirectory)/*.zip
+#     ArtifactName: MyBuildOutputs
