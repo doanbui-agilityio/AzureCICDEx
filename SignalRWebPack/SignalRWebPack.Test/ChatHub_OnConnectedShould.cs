@@ -13,7 +13,7 @@ namespace SignalRWebPack.Test
         [Test]
         public async Task ChatHub_OnConnect_ShouldReturnMessage()
         {
-            var message = new[] { (object)1, "message".ToUpper() };
+            var message = new[] { (object)1, "message" };
             Mock<IHubCallerClients> mockClients = new Mock<IHubCallerClients>();
             Mock<IClientProxy> mockClientProxy = new Mock<IClientProxy>();
 
@@ -32,7 +32,7 @@ namespace SignalRWebPack.Test
                                                                             "messageReceived",
                                                                             It.Is<object[]>(o => o != null && o.Length == 1 && ((object[])o[0]).Length == 2),
                                                                             default(CancellationToken)),
-                                                                            Times.Once); ;
+                                                                            Times.Once);
         }
     }
 }
