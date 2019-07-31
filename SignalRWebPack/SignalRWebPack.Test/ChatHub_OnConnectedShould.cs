@@ -13,11 +13,10 @@ namespace SignalRWebPack.Test
         [Test]
         public async Task ChatHub_OnConnect_ShouldReturnMessage()
         {
-            var message = new[] { (object)1, "message" };
             Mock<IHubCallerClients> mockClients = new Mock<IHubCallerClients>();
             Mock<IClientProxy> mockClientProxy = new Mock<IClientProxy>();
 
-            mockClients.Setup(clients => clients.All).Returns(mockClientProxy.Object);
+            //mockClients.Setup(clients => clients.All).Returns(mockClientProxy.Object);
 
             ChatHub hub = new ChatHub()
             {
