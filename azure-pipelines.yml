@@ -13,29 +13,29 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '10.x'
-  displayName: 'Install Node.js'
+# - task: NodeTool@0
+#   inputs:
+#     versionSpec: '10.x'
+#   displayName: 'Install Node.js'
 
-- task: Npm@1
-  inputs:
-    command: install
-    workingDir: SignalRWebPack/SignalRWebPack
-  displayName: 'npm install'
+# - task: Npm@1
+#   inputs:
+#     command: install
+#     workingDir: SignalRWebPack/SignalRWebPack
+#   displayName: 'npm install'
 
-- task: DotNetCoreCLI@2
-  displayName: Build
-  inputs:
-    projects: ' SignalRWebPack/SignalRWebPack/SignalRWebPack.csproj'
-    arguments: '--configuration $(BuildConfiguration)'
+# - task: DotNetCoreCLI@2
+#   displayName: Build
+#   inputs:
+#     projects: ' SignalRWebPack/SignalRWebPack/SignalRWebPack.csproj'
+#     arguments: '--configuration $(BuildConfiguration)'
 
 - task: DotNetCoreCLI@2
   displayName: test
   inputs:
     command: test
     projects: 'SignalRWebPack/SignalRWebPack.Test/SignalRWebPack.Test.csproj'
-    arguments: '--configuration $(BuildConfiguration) --collect "Code coverage"'
+    arguments: '--configuration $(BuildConfiguration)'
 
 # - task: PublishTestResults@2
 #   condition: su
@@ -45,16 +45,16 @@ steps:
 #     publishWebProjects: false
 #     projects: 
 
-- task: DotNetCoreCLI@2
-  displayName: Publish
-  inputs:
-    command: publish
-    publishWebProjects: true
-    projects: 'SignalRWebPack/SignalRWebPack/SignalRWebPack.csproj'
-    arguments: '--configuration $(BuildConfiguration) --output $(build.ArtifactStagingDirectory)'
-    zipAfterPublish: true
+# - task: DotNetCoreCLI@2
+#   displayName: Publish
+#   inputs:
+#     command: publish
+#     publishWebProjects: true
+#     projects: 'SignalRWebPack/SignalRWebPack/SignalRWebPack.csproj'
+#     arguments: '--configuration $(BuildConfiguration) --output $(build.ArtifactStagingDirectory)'
+#     zipAfterPublish: true
 
-- task: PublishBuildArtifacts@1
-  displayName: 'Publish Artifact'
-  inputs:
-    PathtoPublish: $(Build.ArtifactStagingDirectory)
+# - task: PublishBuildArtifacts@1
+#   displayName: 'Publish Artifact'
+#   inputs:
+#     PathtoPublish: $(Build.ArtifactStagingDirectory)
