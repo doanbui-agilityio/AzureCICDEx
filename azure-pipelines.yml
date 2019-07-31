@@ -13,16 +13,16 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-# - task: NodeTool@0
-#   inputs:
-#     versionSpec: '10.x'
-#   displayName: 'Install Node.js'
+- task: NodeTool@0
+  inputs:
+    versionSpec: '10.x'
+  displayName: 'Install Node.js'
 
-# - task: Npm@1
-#   inputs:
-#     command: install
-#     workingDir: SignalRWebPack/SignalRWebPack
-#   displayName: 'npm install'
+- task: Npm@1
+  inputs:
+    command: install
+    workingDir: SignalRWebPack/SignalRWebPack
+  displayName: 'npm install'
 
 # - task: DotNetCoreCLI@2
 #   displayName: Build
