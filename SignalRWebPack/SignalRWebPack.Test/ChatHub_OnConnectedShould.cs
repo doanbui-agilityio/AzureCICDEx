@@ -16,7 +16,7 @@ namespace SignalRWebPack.Test
             Mock<IHubCallerClients> mockClients = new Mock<IHubCallerClients>();
             Mock<IClientProxy> mockClientProxy = new Mock<IClientProxy>();
 
-            //mockClients.Setup(clients => clients.All).Returns(mockClientProxy.Object);
+            mockClients.Setup(clients => clients.All).Returns(mockClientProxy.Object);
 
             ChatHub hub = new ChatHub()
             {
