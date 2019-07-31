@@ -35,7 +35,7 @@ steps:
   inputs:
     command: test
     projects: 'SignalRWebPack/SignalRWebPack.Test/SignalRWebPack.Test.csproj'
-    arguments: '--configuration $(BuildConfiguration) --collect "Code coverage" --results-directory $(build.ArtifactStagingDirectory)'
+    arguments: '--configuration $(BuildConfiguration) --logger trx --results-directory $(build.ArtifactStagingDirectory) --collect "Code coverage"'
 
 - task: PublishTestResults@2
   condition: succeededOrFailed()
