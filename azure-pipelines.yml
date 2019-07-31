@@ -24,11 +24,11 @@ steps:
     workingDir: SignalRWebPack/SignalRWebPack
   displayName: 'npm install'
 
-# - task: DotNetCoreCLI@2
-#   displayName: Build
-#   inputs:
-#     projects: ' SignalRWebPack/SignalRWebPack/SignalRWebPack.csproj'
-#     arguments: '--configuration $(BuildConfiguration)'
+- task: DotNetCoreCLI@2
+  displayName: Build
+  inputs:
+    projects: ' SignalRWebPack/SignalRWebPack/SignalRWebPack.csproj'
+    arguments: '--configuration $(BuildConfiguration)'
 
 - task: DotNetCoreCLI@2
   displayName: test
@@ -37,23 +37,16 @@ steps:
     projects: 'SignalRWebPack/SignalRWebPack.Test/SignalRWebPack.Test.csproj'
     arguments: '--configuration $(BuildConfiguration) --collect "Code coverage"'
 
-- task: PublishTestResults@2
-  condition: succeededOrFailed()
-  displayName: 'Publish functional tests'
+- task: DotNetCoreCLI@2
+  displayName: Publish
   inputs:
-    testResultsFormat: 'NUnit'
-    testResultsFiles: 'D:/a/_temp/*.trx'
+    command: publish
+    publishWebProjects: true
+    projects: 'SignalRWebPack/SignalRWebPack/SignalRWebPack.csproj'
+    arguments: '--configuration $(BuildConfiguration) --output $(build.ArtifactStagingDirectory)'
+    zipAfterPublish: true
 
-# - task: DotNetCoreCLI@2
-#   displayName: Publish
-#   inputs:
-#     command: publish
-#     publishWebProjects: true
-#     projects: 'SignalRWebPack/SignalRWebPack/SignalRWebPack.csproj'
-#     arguments: '--configuration $(BuildConfiguration) --output $(build.ArtifactStagingDirectory)'
-#     zipAfterPublish: true
-
-# - task: PublishBuildArtifacts@1
-#   displayName: 'Publish Artifact'
-#   inputs:
-#     PathtoPublish: $(Build.ArtifactStagingDirectory)
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact'
+  inputs:
+    PathtoPublish: $(Build.ArtifactStagingDirectory)
