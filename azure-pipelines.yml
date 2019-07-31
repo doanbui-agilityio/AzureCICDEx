@@ -34,7 +34,6 @@ steps:
   displayName: test
   inputs:
     command: test
-    workingDirectory: $(workingDirectory)
     projects: 'SignalRWebPack/SignalRWebPack.Test/SignalRWebPack.Test.csproj'
     arguments: '--configuration $(BuildConfiguration) --collect "Code coverage"'
 
@@ -43,7 +42,7 @@ steps:
   displayName: 'Publish functional tests'
   inputs:
     testResultsFormat: 'NUnit'
-    testResultsFiles: '$(build.ArtifactStagingDirectory)/*.trx'
+    testResultsFiles: 'D:/a/_temp/*.trx'
 
 # - task: DotNetCoreCLI@2
 #   displayName: Publish
